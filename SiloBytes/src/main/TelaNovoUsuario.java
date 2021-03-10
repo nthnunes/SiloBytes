@@ -1,9 +1,16 @@
 // Autor: Nathan Pedro Nunes
 package main;
 
-import backend.Usuario;
-import backend.util.Arquivo;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import util.ContaLinhasArquivo;
+import util.Info;
 
 public class TelaNovoUsuario extends javax.swing.JFrame {
 
@@ -15,7 +22,6 @@ public class TelaNovoUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
         panelCadastro = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -25,14 +31,14 @@ public class TelaNovoUsuario extends javax.swing.JFrame {
         campoSenha = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
         campoLogin = new javax.swing.JTextField();
-        panel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Usuário - SiloBytes");
 
         panelCadastro.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Cadastro de Usuario");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("Cadastro de Usuário");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Nome:");
@@ -62,95 +68,115 @@ public class TelaNovoUsuario extends javax.swing.JFrame {
         panelCadastroLayout.setHorizontalGroup(
             panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCadastroLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnCadastrar)
-                    .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(panelCadastroLayout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addGap(28, 28, 28)
-                            .addComponent(campoSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
-                        .addComponent(jLabel1)
-                        .addGroup(panelCadastroLayout.createSequentialGroup()
-                            .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3))
-                            .addGap(28, 28, 28)
+                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelCadastroLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addGroup(panelCadastroLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCadastrar)
                             .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(campoNome)
-                                .addComponent(campoLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))))
-                .addContainerGap(417, Short.MAX_VALUE))
+                                .addGroup(panelCadastroLayout.createSequentialGroup()
+                                    .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel3))
+                                    .addGap(28, 28, 28)
+                                    .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(campoNome, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                        .addComponent(campoLogin)))
+                                .addGroup(panelCadastroLayout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addGap(28, 28, 28)
+                                    .addComponent(campoSenha))))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         panelCadastroLayout.setVerticalGroup(
             panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCadastroLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
+                .addGap(18, 18, 18)
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(campoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnCadastrar)
-                .addContainerGap(237, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
-
-        jTabbedPane1.addTab("tab1", panelCadastro);
-
-        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
-        panel.setLayout(panelLayout);
-        panelLayout.setHorizontalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 635, Short.MAX_VALUE)
-        );
-        panelLayout.setVerticalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 432, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("tab2", panel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelCadastro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        Usuario usuario = new Usuario();
-        usuario.setLogin(campoNome.getText());
-        usuario.setNome(campoNome.getText());
-        usuario.setSenha(campoSenha.getText());
-        Arquivo.inserir(usuario);
-        limparCampos(); 
+        // Criação de Strings com as informações de cadastro.
+        String cadastro;        
+        String nome = campoNome.getText();
+        String login = campoLogin.getText();
+        String senha = campoSenha.getText();
+                      
+        /*  Utilizando a API java para gerar o Hash da senha utilizando o 
+            algoritmo SHA-256 e transformando em formato hexadecimal.  */
+        String senhahex = null;
+        MessageDigest algorithm;        
+        try {
+            algorithm = MessageDigest.getInstance("SHA-256");
+            byte messageDigest[] = algorithm.digest(senha.getBytes("UTF-8"));
+            
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : messageDigest) {
+              hexString.append(String.format("%02X", 0xFF & b));
+            }
+            senhahex = hexString.toString();
+        } catch (NoSuchAlgorithmException ex) {
+            System.out.println(ex);
+        } catch (UnsupportedEncodingException ex) {
+            System.out.println(ex);
+        }
+                
+        // Cria uma String com a nova linha de cadastro do cliente, à ser escrita no arquivo.
+        cadastro = nome+";"+login+";"+senhahex+";";
+        
+        // Escreve a nova linha de cadastro do cliente no arquivo.
+        try {
+            FileWriter fw = new FileWriter(Info.ARQUIVO_USUARIOS, true);
+            BufferedWriter conexao = new BufferedWriter(fw);
+            conexao.write(cadastro);
+            conexao.newLine();
+            conexao.close();
+            JOptionPane.showMessageDialog(null, "Cliente "+nome+" cadastrado com sucesso!");
+            limparCampos();
+	} catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+	}                
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    // Limpa todos os campos de entrada de informações.
     private void limparCampos(){
         this.campoLogin.setText("");
         this.campoNome.setText("");
         this.campoSenha.setText("");
     }
-    
+        
     public static void main(String args[]) {
         try { 
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel"); 
@@ -180,8 +206,6 @@ public class TelaNovoUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JPanel panel;
     private javax.swing.JPanel panelCadastro;
     // End of variables declaration//GEN-END:variables
 }

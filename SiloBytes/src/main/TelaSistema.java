@@ -1,7 +1,7 @@
 // Autor: Nathan Pedro Nunes
 package main;
 
-import backend.util.Info;
+import util.Info;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -106,11 +106,11 @@ public class TelaSistema extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelArmazenamentoKg)
                     .addComponent(labelPorcentagem))
-                .addContainerGap(640, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelLogo)
-                .addGap(37, 37, 37))
+                .addContainerGap(715, Short.MAX_VALUE)
+                .addComponent(labelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,8 +127,8 @@ public class TelaSistema extends javax.swing.JFrame {
                     .addComponent(labelUtilizacaoKg)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelPorcentagem))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
-                .addComponent(labelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                .addComponent(labelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -213,7 +213,10 @@ public class TelaSistema extends javax.swing.JFrame {
     }//GEN-LAST:event_menuUsuariosActionPerformed
 
     private void menuClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuClientesActionPerformed
-        // TODO add your handling code here:
+        // Abre a tela para cadastro de usuários.
+        JFrame telaclientes = new TelaCadastroClientes();
+        telaclientes.setLocationRelativeTo(null);
+        telaclientes.setVisible(true);
     }//GEN-LAST:event_menuClientesActionPerformed
 
     private void menuConfiguracoesSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConfiguracoesSistemaActionPerformed

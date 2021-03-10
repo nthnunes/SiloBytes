@@ -1,7 +1,7 @@
 // Autor: Nathan Pedro Nunes
 package main;
 
-import backend.util.Info;
+import util.Info;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
