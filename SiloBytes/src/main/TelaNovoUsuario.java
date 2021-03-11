@@ -3,13 +3,11 @@ package main;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-import util.ContaLinhasArquivo;
 import util.Info;
 
 public class TelaNovoUsuario extends javax.swing.JFrame {
@@ -128,8 +126,7 @@ public class TelaNovoUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        // Criação de Strings com as informações de cadastro.
-        String cadastro;        
+        // Criação de Strings com as informações de cadastro.     
         String nome = campoNome.getText();
         String login = campoLogin.getText();
         String senha = campoSenha.getText();
@@ -153,8 +150,8 @@ public class TelaNovoUsuario extends javax.swing.JFrame {
             System.out.println(ex);
         }
                 
-        // Cria uma String com a nova linha de cadastro do cliente, à ser escrita no arquivo.
-        cadastro = nome+";"+login+";"+senhahex+";";
+        // Cria uma String com a nova linha de cadastro do usuário, à ser escrita no arquivo.
+        String cadastro = nome+";"+login+";"+senhahex+";";
         
         // Escreve a nova linha de cadastro do cliente no arquivo.
         try {

@@ -301,7 +301,11 @@ public class TelaCadastroClientes extends javax.swing.JFrame {
             conexao.write(cadastro);
             conexao.newLine();
             conexao.close();
+            
+            // Mostra uma mensagem de sucesso ao cadastrar o cliente.
             JOptionPane.showMessageDialog(null, "Cliente "+nome+" cadastrado com sucesso!");
+            
+            // Carrega os clientes para exibição na tabela.
             carregarNaTabela();
 	} catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);

@@ -8,6 +8,7 @@ import java.io.InputStream;
 
 public class ContaLinhasArquivo {
 
+    // Função para contar quantas linhas tem em um arquivo de texto.
     public static int contaLinhasArquivo(String arquivo) throws IOException {
         InputStream is = new BufferedInputStream(new FileInputStream(arquivo));
         try {

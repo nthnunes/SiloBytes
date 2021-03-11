@@ -2,37 +2,21 @@
 package main;
 
 import util.Info;
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.UIManager;
+import util.UtilSilo;
 
 public class TelaConfiguracao extends javax.swing.JFrame {
 
     public TelaConfiguracao() {
         initComponents();
+        
         // Lê o arquivo com a quantidade de armazenamento do silo, e mostra na tela.
-        try { 
-            File file = new File(Info.ARQUIVO_QTD_SILO); 
-            BufferedReader br = new BufferedReader(new FileReader(file)); 
-            String st; 
-            while ((st = br.readLine()) != null) 
-                campoQuantidade.setText(st);
-        } catch (IOException ex) {
-            labelInformacoes.setText("Erro ao ler a quantidade de armazenamento.");
-        }
+        campoQuantidade.setText(String.valueOf(UtilSilo.verificarArmazenamentoSilo()));
+        
         // Lê o arquivo com o preço da diária do silo, e mostra na tela.
-        try {
-            File file = new File(Info.ARQUIVO_PRECO_DIARIA); 
-            BufferedReader br = new BufferedReader(new FileReader(file)); 
-            String st; 
-            while ((st = br.readLine()) != null) 
-                campoPreco.setText(st);
-        } catch (IOException ex) {
-            labelInformacoes.setText("Erro ao ler o preço da diária.");
-        }
+        campoPreco.setText(String.valueOf(UtilSilo.verificaPrecoDiariaSilo()));
     }
 
     @SuppressWarnings("unchecked")
@@ -206,7 +190,6 @@ public class TelaConfiguracao extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaConfiguracao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaConfiguracao().setVisible(true);
