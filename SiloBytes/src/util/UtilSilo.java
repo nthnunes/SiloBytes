@@ -7,8 +7,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 // Classe criada com funções úteis sobre o silo.
@@ -33,6 +31,7 @@ public class UtilSilo {
     
     // Função para verificar a capacidade do silo.
     public static int verificarArmazenamentoSilo() {
+        // Variável para salvar o armazenamento do silo.
         int quantidade = 0;
         
         // Lê o arquivo com a quantidade de armazenamento do silo.
@@ -53,7 +52,7 @@ public class UtilSilo {
         // Variável para salvar o total de uso do silo.
         int total = 0;
         
-        // Lê o arquivo com informações dos usuários.
+        // Lê o arquivo com as informações das armazenagens.
         String dados = null;
         try {   
             // Escreve todas as informações do arquivo em uma String.
@@ -66,8 +65,7 @@ public class UtilSilo {
         String[] linhas = dados.split("\n");
 
         // Passa por cada linha da String para identificar as armazenagens.
-        for (int i = 1; i < linhas.length; i++) {
-            
+        for (int i = 1; i < linhas.length; i++) {            
             // Troca o divisor de elementos da String para melhor reconhecimento. 
             String linhaReplace = linhas[i].replace("|", ";");
                         
@@ -90,6 +88,7 @@ public class UtilSilo {
 
         // Calcula e retorna a porcentagem.
         double porcentagem = ((uso/total)*100); 
+                
         return porcentagem;
     }
     

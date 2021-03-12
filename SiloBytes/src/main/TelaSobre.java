@@ -35,7 +35,7 @@ public class TelaSobre extends javax.swing.JFrame {
         jLabel3.setText("Desenvolvido por Nathan Pedro Nunes");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setText("Sistema SiloBytes versão 0.4");
+        jLabel4.setText("Sistema SiloBytes versão 1.0");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
