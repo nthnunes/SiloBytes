@@ -9,5 +9,6 @@ Sistema de Controle de aluguel de Silos desenvolvido para matéria de Programaç
 Para fazer login e testar o programa use "Login: teste" "Senha: teste123"
 
 <p align="center">
+  <br />
   <img src="SiloBytes/src/img/Logo350px.png"/><br/>
 </p>
